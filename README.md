@@ -14,7 +14,6 @@ The simplest installation can be achieved with the following:
 The installation can be tailored by specifying any of the parameters in the class definition. Here is an example with the default values:
 
     class { 'piwik':
-      web_server => 'apache',
       version    => 'latest',
       path       => "/var/www/html",
       user        => "apache",
@@ -28,23 +27,15 @@ Note: If you use a different, make sure the user has been created first.
 
 ## Plugins
 
-### LoginLdap
+You can install plugins like this:
 
-LoginLdap is a plugin to enable ldap authentication.
-
-Just make sure you have `php-ldap` installed.
-
-Then use:
-
-    php::module { "php-ldap": }
-
-    class { 'piwik::plugins::loginldap': }
+    piwik::plugins:
+      LoginFailLog:
+        plugin_version: "latest"
+      Barometer:
+        plugin_version: "0.6.0"
 
 
 ## Contribute
 
 Want to help - send a pull request.
-
-Suggestions
-
-* Nginx instead of Apache (create install_nginx.pp etc.)
